@@ -1,13 +1,26 @@
-#ifndef EDGE_H
-#define EDGE_H
+//
+// Created by Olcay Taner YILDIZ on 8.05.2023.
+//
+
+#ifndef DATASTRUCTURES_CPP_EDGE_H
+#define DATASTRUCTURES_CPP_EDGE_H
+
 
 class Edge {
-public:
+private:
     int from;
     int to;
+    int weight;
     Edge* next;
-
-    Edge(int from, int to);
+public:
+    Edge();
+    Edge(int from, int to, int weight);
+    void setNext(Edge* _next);
+    Edge* getNext() const;
+    int getFrom() const;
+    int getTo() const;
+    int getWeight() const;
 };
 
-#endif // EDGE_H
+
+#endif //DATASTRUCTURES_CPP_EDGE_H

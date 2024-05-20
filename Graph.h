@@ -1,16 +1,39 @@
-#ifndef GRAPH_H
-#define GRAPH_H
+//
+// Created by Olcay Taner YILDIZ on 8.05.2023.
+//
+
+#ifndef DATASTRUCTURES_CPP_GRAPH_H
+#define DATASTRUCTURES_CPP_GRAPH_H
+
 
 #include "EdgeList.h"
+#include "../../General/AbstractGraph.h"
 
-class Graph {
-public:
-    EdgeList* edges;
-    int vertexCount;
+namespace list {
 
-    Graph(int vertexCount);
-    ~Graph();
-    void addEdge(int from, int to); // Add edge method declaration
-};
+    class Graph : public AbstractGraph{
+    private:
+        EdgeList *edges;
+    public:
+        explicit Graph(int vertexCount);
+        ~Graph();
+        void addEdge(int from, int to);
+        void addEdge(int from, int to, int weight);
+        EdgeList* getEdges() { return edges; }
+        int edgeCount() const;
+        void connectedComponentsDisjointSet();
+        Path* bellmanFord(int source);
+        Path* dijkstra(int source);
+        void prim();
 
-#endif // GRAPH_H
+        bool contains(int from, int to);
+
+    protected:
+        void depthFirstSearch(bool* visited, int fromNode) override;
+        void breadthFirstSearch(bool* visited, int startNode) override;
+        Edge* edgeList(int& edgeCount) override;
+
+    };
+
+}
+#endif //DATASTRUCTURES_CPP_GRAPH_H
